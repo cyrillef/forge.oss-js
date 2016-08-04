@@ -374,7 +374,7 @@
     var contentType =this.jsonPreferredMime (contentTypes) ;
     if ( contentType ) {
       requestParams.headers ['Content-Type'] =contentType ;
-    } else if ( !request.header ['Content-Type'] ) {
+    } else if ( !request.headers || !request.headers ['Content-Type'] ) {
       requestParams.headers ['Content-Type'] ='application/json' ;
     }
 
