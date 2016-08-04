@@ -1,0 +1,45 @@
+{
+  "name": "forge-oss",
+  "version": "2.0.0",
+  "description": "Asynchronous Javascript/Node.js library for the Autodesk Forge OSS API",
+  "homepage": "https://developer.autodesk.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/autodesk-forge/forge.oss-js"
+  },
+  "bugs": {
+    "url": "https://github.com/autodesk-forge/forge.oss-js/issues"
+  },
+  "author": "",
+  "contributors": [
+    "Cyrille Fauvel <cyrille@autodesk.com>"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha --recursive"
+  },
+  "files": [
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "framework",
+    "lmv",
+    "forge",
+    "autodesk",
+    "rest",
+    "restful",
+    "api"
+  ],
+  "dependencies": {
+    "request": "2.74.0"
+  },
+  "devDependencies": {
+    "mocha": "~2.3.4",
+    "sinon": "1.17.3",
+    "expect.js": "~0.3.1"
+  },
+  "optionalDependencies": {
+  }
+}
