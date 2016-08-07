@@ -69,6 +69,18 @@
       //expect(instance).to.be.a(ForgeOss.PostObjectSigned);
     });
 
+    it('should have the property signedUrl (base name: "signedUrl")', function() {
+      // uncomment below and update the code to test the property signedUrl
+      //var instane = new ForgeOss.PostObjectSigned();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property expiration (base name: "expiration")', function() {
+      // uncomment below and update the code to test the property expiration
+      //var instane = new ForgeOss.PostObjectSigned();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

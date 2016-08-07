@@ -14,7 +14,12 @@
 
 
 # forge-oss
-Asynchronous Javascript/Node.js library for the Autodesk Forge OSS API
+Asynchronous Javascript/Node.js library for the Autodesk Forge OSS API.
+
+This SDK was generated from YAML using a modified version of the [Swagger tools](https://github.com/swagger-api/).
+Modified version located [here](https://github.com/cyrillef/swagger-codegen).
+
+Samples using this SDKs available [here](https://github.com/Autodesk-Forge).
 
 
 ## Installation
@@ -194,6 +199,6 @@ For support, please use [http://stackoverflow.com/questions/tagged/autodesk-data
 
 ## License
 
-This sample is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](LICENSE) file for full details.
+This SDK is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](LICENSE) file for full details.
 
 

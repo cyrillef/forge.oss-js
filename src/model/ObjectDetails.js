@@ -49,7 +49,6 @@
   /**
    * The ObjectDetails model module.
    * @module model/ObjectDetails
-   * @version 2.0.0
    */
 
   /**

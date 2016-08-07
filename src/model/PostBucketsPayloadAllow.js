@@ -49,7 +49,6 @@
   /**
    * The PostBucketsPayloadAllow model module.
    * @module model/PostBucketsPayloadAllow
-   * @version 2.0.0
    */
 
   /**

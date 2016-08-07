@@ -49,7 +49,6 @@
   /**
    * The ObjectFullDetails model module.
    * @module model/ObjectFullDetails
-   * @version 2.0.0
    */
 
   /**

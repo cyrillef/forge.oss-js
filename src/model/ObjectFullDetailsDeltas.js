@@ -49,7 +49,6 @@
   /**
    * The ObjectFullDetailsDeltas model module.
    * @module model/ObjectFullDetailsDeltas
-   * @version 2.0.0
    */
 
   /**

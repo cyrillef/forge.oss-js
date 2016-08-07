@@ -49,7 +49,6 @@
   /**
    * The PostObjectSigned model module.
    * @module model/PostObjectSigned
-   * @version 2.0.0
    */
 
   /**
@@ -57,10 +56,14 @@
    * Object Signed Object json response
    * @alias module:model/PostObjectSigned
    * @class
+   * @param signedUrl {String} URL created for downloading the object
+   * @param expiration {Integer} Value for expiration in minutes
    */
-  var exports = function() {
+  var exports = function(signedUrl, expiration) {
     var _this = this;
 
+    _this['signedUrl'] = signedUrl;
+    _this['expiration'] = expiration;
   };
 
   /**
@@ -74,10 +77,26 @@
     if (data) {
       obj = obj || new exports();
 
+      if (data.hasOwnProperty('signedUrl')) {
+        obj['signedUrl'] = ApiClient.convertToType(data['signedUrl'], 'String');
+      }
+      if (data.hasOwnProperty('expiration')) {
+        obj['expiration'] = ApiClient.convertToType(data['expiration'], 'Integer');
+      }
     }
     return obj;
   }
 
+  /**
+   * URL created for downloading the object
+   * @member {String} signedUrl
+   */
+  exports.prototype['signedUrl'] = undefined;
+  /**
+   * Value for expiration in minutes
+   * @member {Integer} expiration
+   */
+  exports.prototype['expiration'] = undefined;
 
 
 

@@ -49,7 +49,6 @@
   /**
    * The PostBucketsSigned model module.
    * @module model/PostBucketsSigned
-   * @version 2.0.0
    */
 
   /**

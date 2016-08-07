@@ -49,7 +49,6 @@
   /**
    * The Buckets model module.
    * @module model/Buckets
-   * @version 2.0.0
    */
 
   /**

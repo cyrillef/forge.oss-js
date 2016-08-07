@@ -49,7 +49,6 @@
   /**
    * The Reason model module.
    * @module model/Reason
-   * @version 2.0.0
    */
 
   /**

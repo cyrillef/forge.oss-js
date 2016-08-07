@@ -49,7 +49,6 @@
   /**
    * The InputStream model module.
    * @module model/InputStream
-   * @version 2.0.0
    */
 
   /**

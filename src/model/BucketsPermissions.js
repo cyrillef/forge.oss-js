@@ -49,7 +49,6 @@
   /**
    * The BucketsPermissions model module.
    * @module model/BucketsPermissions
-   * @version 2.0.0
    */
 
   /**

@@ -46,7 +46,6 @@
   /**
    * Buckets service.
    * @module api/BucketsApi
-   * @version 2.0.0
    */
 
   /**
