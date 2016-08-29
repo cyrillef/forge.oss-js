@@ -29,38 +29,38 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/BucketsPermissions'], factory);
+    define(['ApiClient', 'model/BucketPermissions'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./BucketsPermissions'));
+    module.exports = factory(require('../ApiClient'), require('./BucketPermissions'));
   } else {
     // Browser globals (root is window)
     if (!root.ForgeOss) {
       root.ForgeOss = {};
     }
-    root.ForgeOss.Buckets = factory(root.ForgeOss.ApiClient, root.ForgeOss.BucketsPermissions);
+    root.ForgeOss.Bucket = factory(root.ForgeOss.ApiClient, root.ForgeOss.BucketPermissions);
   }
-}(this, function(ApiClient, BucketsPermissions) {
+}(this, function(ApiClient, BucketPermissions) {
   'use strict';
 
 
 
 
   /**
-   * The Buckets model module.
-   * @module model/Buckets
+   * The Bucket model module.
+   * @module model/Bucket
    */
 
   /**
-   * Constructs a new <code>Buckets</code>.
+   * Constructs a new <code>Bucket</code>.
    * Bucket json response
-   * @alias module:model/Buckets
+   * @alias module:model/Bucket
    * @class
    * @param bucketKey {String} The key for the created bucket
    * @param bucketOwner {String} Owner of the bucket
    * @param createdDate {Integer} Timestamp in epoch time
-   * @param permissions {Array.<module:model/BucketsPermissions>} Array of objects representing the applications with access granted at bucket creation
-   * @param policyKey {module:model/Buckets.PolicyKeyEnum} [Data retention policy](https://developer.autodesk.com/en/docs/data/v2/overview/retention-policy/)  Acceptable values: `transient`, `temporary` or `persistent` 
+   * @param permissions {Array.<module:model/BucketPermissions>} Array of objects representing the applications with access granted at bucket creation
+   * @param policyKey {module:model/Bucket.PolicyKeyEnum} [Data retention policy](https://developer.autodesk.com/en/docs/data/v2/overview/retention-policy/)  Acceptable values: `transient`, `temporary` or `persistent` 
    */
   var exports = function(bucketKey, bucketOwner, createdDate, permissions, policyKey) {
     var _this = this;
@@ -73,11 +73,11 @@
   };
 
   /**
-   * Constructs a <code>Buckets</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>Bucket</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/Buckets} obj Optional instance to populate.
-   * @return {module:model/Buckets} The populated <code>Buckets</code> instance.
+   * @param {module:model/Bucket} obj Optional instance to populate.
+   * @return {module:model/Bucket} The populated <code>Bucket</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
@@ -93,7 +93,7 @@
         obj['createdDate'] = ApiClient.convertToType(data['createdDate'], 'Integer');
       }
       if (data.hasOwnProperty('permissions')) {
-        obj['permissions'] = ApiClient.convertToType(data['permissions'], [BucketsPermissions]);
+        obj['permissions'] = ApiClient.convertToType(data['permissions'], [BucketPermissions]);
       }
       if (data.hasOwnProperty('policyKey')) {
         obj['policyKey'] = ApiClient.convertToType(data['policyKey'], 'String');
@@ -119,12 +119,12 @@
   exports.prototype['createdDate'] = undefined;
   /**
    * Array of objects representing the applications with access granted at bucket creation
-   * @member {Array.<module:model/BucketsPermissions>} permissions
+   * @member {Array.<module:model/BucketPermissions>} permissions
    */
   exports.prototype['permissions'] = undefined;
   /**
    * [Data retention policy](https://developer.autodesk.com/en/docs/data/v2/overview/retention-policy/)  Acceptable values: `transient`, `temporary` or `persistent` 
-   * @member {module:model/Buckets.PolicyKeyEnum} policyKey
+   * @member {module:model/Bucket.PolicyKeyEnum} policyKey
    */
   exports.prototype['policyKey'] = undefined;
 

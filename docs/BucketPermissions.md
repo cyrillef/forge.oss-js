@@ -1,4 +1,4 @@
-# ForgeOss.BucketsPermissions
+# ForgeOss.BucketPermissions
 
 ## Properties
 Name | Type | Description | Notes

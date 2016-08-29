@@ -76,6 +76,7 @@
      * data is of type: {@link module:model/ObjectDetails}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ObjectDetails}
      */
+    this.copyToEndPoint ='/oss/v2/buckets/{bucketKey}/objects/{objectName}/copyTo/{newObjName}' ;
     this.copyTo = function(bucketKey, objectName, newObjName, callback) {
       var postBody = null;
 
@@ -113,11 +114,11 @@
       var returnType = ObjectDetails;
 
       return this.apiClient.callApi(
-        '/oss/v2/buckets/{bucketKey}/objects/{objectName}/copyTo/{newObjName}', 'PUT',
+        this.copyToEndPoint, 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the createSignedResource operation.
@@ -138,6 +139,7 @@
      * data is of type: {@link module:model/PostObjectSigned}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/PostObjectSigned}
      */
+    this.createSignedResourceEndPoint ='/oss/v2/buckets/{bucketKey}/objects/{objectName}/signed' ;
     this.createSignedResource = function(bucketKey, objectName, postBucketsSigned, opts, callback) {
       opts = opts || {};
       var postBody = postBucketsSigned;
@@ -176,11 +178,11 @@
       var returnType = PostObjectSigned;
 
       return this.apiClient.callApi(
-        '/oss/v2/buckets/{bucketKey}/objects/{objectName}/signed', 'POST',
+        this.createSignedResourceEndPoint, 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the deleteObject operation.
@@ -197,6 +199,7 @@
      * @param {module:api/ObjectsApi~deleteObjectCallback} callback The callback function, accepting three arguments: error, data, response
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.deleteObjectEndPoint ='/oss/v2/buckets/{bucketKey}/objects/{objectName}' ;
     this.deleteObject = function(bucketKey, objectName, callback) {
       var postBody = null;
 
@@ -228,11 +231,11 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/oss/v2/buckets/{bucketKey}/objects/{objectName}', 'DELETE',
+        this.deleteObjectEndPoint, 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the deleteSignedResource operation.
@@ -251,6 +254,7 @@
      * data is of type: {@link module:model/InputStream}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/InputStream}
      */
+    this.deleteSignedResourceEndPoint ='/oss/v2/signedresources/{id}' ;
     this.deleteSignedResource = function(id, opts, callback) {
       opts = opts || {};
       var postBody = null;
@@ -278,11 +282,11 @@
       var returnType = InputStream;
 
       return this.apiClient.callApi(
-        '/oss/v2/signedresources/{id}', 'DELETE',
+        this.deleteSignedResourceEndPoint, 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getObject operation.
@@ -305,6 +309,7 @@
      * data is of type: {@link module:model/InputStream}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/InputStream}
      */
+    this.getObjectEndPoint ='/oss/v2/buckets/{bucketKey}/objects/{objectName}' ;
     this.getObject = function(bucketKey, objectName, opts, callback) {
       opts = opts || {};
       var postBody = null;
@@ -341,11 +346,11 @@
       var returnType = InputStream;
 
       return this.apiClient.callApi(
-        '/oss/v2/buckets/{bucketKey}/objects/{objectName}', 'GET',
+        this.getObjectEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getObjectDetails operation.
@@ -366,6 +371,7 @@
      * data is of type: {@link module:model/ObjectFullDetails}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ObjectFullDetails}
      */
+    this.getObjectDetailsEndPoint ='/oss/v2/buckets/{bucketKey}/objects/{objectName}/details' ;
     this.getObjectDetails = function(bucketKey, objectName, opts, callback) {
       opts = opts || {};
       var postBody = null;
@@ -400,11 +406,11 @@
       var returnType = ObjectFullDetails;
 
       return this.apiClient.callApi(
-        '/oss/v2/buckets/{bucketKey}/objects/{objectName}/details', 'GET',
+        this.getObjectDetailsEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getObjects operation.
@@ -425,6 +431,7 @@
      * data is of type: {@link module:model/InlineResponse2001}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/InlineResponse2001}
      */
+    this.getObjectsEndPoint ='/oss/v2/buckets/{bucketKey}/objects' ;
     this.getObjects = function(bucketKey, opts, callback) {
       opts = opts || {};
       var postBody = null;
@@ -454,11 +461,11 @@
       var returnType = InlineResponse2001;
 
       return this.apiClient.callApi(
-        '/oss/v2/buckets/{bucketKey}/objects', 'GET',
+        this.getObjectsEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getSessionid operation.
@@ -476,6 +483,7 @@
      * @param {module:api/ObjectsApi~getSessionidCallback} callback The callback function, accepting three arguments: error, data, response
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.getSessionidEndPoint ='/oss/v2/buckets/{bucketKey}/objects/{objectName}/status/{sessionId}' ;
     this.getSessionid = function(bucketKey, objectName, sessionId, callback) {
       var postBody = null;
 
@@ -513,11 +521,11 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/oss/v2/buckets/{bucketKey}/objects/{objectName}/status/{sessionId}', 'GET',
+        this.getSessionidEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getSignedResource operation.
@@ -540,6 +548,7 @@
      * data is of type: {@link module:model/InputStream}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/InputStream}
      */
+    this.getSignedResourceEndPoint ='/oss/v2/signedresources/{id}' ;
     this.getSignedResource = function(id, opts, callback) {
       opts = opts || {};
       var postBody = null;
@@ -571,11 +580,11 @@
       var returnType = InputStream;
 
       return this.apiClient.callApi(
-        '/oss/v2/signedresources/{id}', 'GET',
+        this.getSignedResourceEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the uploadChunk operation.
@@ -600,6 +609,7 @@
      * data is of type: {@link module:model/ObjectDetails}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ObjectDetails}
      */
+    this.uploadChunkEndPoint ='/oss/v2/buckets/{bucketKey}/objects/{objectName}/resumable' ;
     this.uploadChunk = function(bucketKey, objectName, contentLength, contentRange, sessionId, body, opts, callback) {
       opts = opts || {};
       var postBody = body;
@@ -657,11 +667,11 @@
       var returnType = ObjectDetails;
 
       return this.apiClient.callApi(
-        '/oss/v2/buckets/{bucketKey}/objects/{objectName}/resumable', 'PUT',
+        this.uploadChunkEndPoint, 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the uploadObject operation.
@@ -684,6 +694,7 @@
      * data is of type: {@link module:model/ObjectDetails}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ObjectDetails}
      */
+    this.uploadObjectEndPoint ='/oss/v2/buckets/{bucketKey}/objects/{objectName}' ;
     this.uploadObject = function(bucketKey, objectName, contentLength, body, opts, callback) {
       opts = opts || {};
       var postBody = body;
@@ -729,11 +740,11 @@
       var returnType = ObjectDetails;
 
       return this.apiClient.callApi(
-        '/oss/v2/buckets/{bucketKey}/objects/{objectName}', 'PUT',
+        this.uploadObjectEndPoint, 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the uploadSignedResource operation.
@@ -756,6 +767,7 @@
      * data is of type: {@link module:model/PostObjectSigned}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/PostObjectSigned}
      */
+    this.uploadSignedResourceEndPoint ='/oss/v2/signedresources/{id}' ;
     this.uploadSignedResource = function(id, contentLength, body, opts, callback) {
       opts = opts || {};
       var postBody = body;
@@ -796,11 +808,11 @@
       var returnType = PostObjectSigned;
 
       return this.apiClient.callApi(
-        '/oss/v2/signedresources/{id}', 'PUT',
+        this.uploadSignedResourceEndPoint, 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the uploadSignedResourcesChunk operation.
@@ -823,6 +835,7 @@
      * data is of type: {@link module:model/PostObjectSigned}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/PostObjectSigned}
      */
+    this.uploadSignedResourcesChunkEndPoint ='/oss/v2/signedresources/{id}/resumable' ;
     this.uploadSignedResourcesChunk = function(id, contentRange, sessionId, body, opts, callback) {
       opts = opts || {};
       var postBody = body;
@@ -868,11 +881,11 @@
       var returnType = PostObjectSigned;
 
       return this.apiClient.callApi(
-        '/oss/v2/signedresources/{id}/resumable', 'PUT',
+        this.uploadSignedResourcesChunkEndPoint, 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
   };
 
   return exports;

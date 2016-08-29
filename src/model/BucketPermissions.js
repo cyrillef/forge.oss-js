@@ -38,7 +38,7 @@
     if (!root.ForgeOss) {
       root.ForgeOss = {};
     }
-    root.ForgeOss.BucketsPermissions = factory(root.ForgeOss.ApiClient);
+    root.ForgeOss.BucketPermissions = factory(root.ForgeOss.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -47,16 +47,16 @@
 
 
   /**
-   * The BucketsPermissions model module.
-   * @module model/BucketsPermissions
+   * The BucketPermissions model module.
+   * @module model/BucketPermissions
    */
 
   /**
-   * Constructs a new <code>BucketsPermissions</code>.
-   * @alias module:model/BucketsPermissions
+   * Constructs a new <code>BucketPermissions</code>.
+   * @alias module:model/BucketPermissions
    * @class
    * @param authId {String} The application to grant access to
-   * @param access {module:model/BucketsPermissions.AccessEnum} Acceptable values: `full` or `read` 
+   * @param access {module:model/BucketPermissions.AccessEnum} Acceptable values: `full` or `read` 
    */
   var exports = function(authId, access) {
     var _this = this;
@@ -66,11 +66,11 @@
   };
 
   /**
-   * Constructs a <code>BucketsPermissions</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>BucketPermissions</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/BucketsPermissions} obj Optional instance to populate.
-   * @return {module:model/BucketsPermissions} The populated <code>BucketsPermissions</code> instance.
+   * @param {module:model/BucketPermissions} obj Optional instance to populate.
+   * @return {module:model/BucketPermissions} The populated <code>BucketPermissions</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
@@ -93,7 +93,7 @@
   exports.prototype['authId'] = undefined;
   /**
    * Acceptable values: `full` or `read` 
-   * @member {module:model/BucketsPermissions.AccessEnum} access
+   * @member {module:model/BucketPermissions.AccessEnum} access
    */
   exports.prototype['access'] = undefined;
 

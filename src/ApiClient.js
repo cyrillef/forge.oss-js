@@ -360,7 +360,7 @@
     var requestParams ={} ;
     requestParams.uri =this.buildUrl(path, pathParams) ;
     requestParams.method =httpMethod ;
-    requestParams.headers =this.defaultHeaders ;
+    requestParams.headers =JSON.parse (JSON.stringify (this.defaultHeaders)) ;
     requestParams.qs =this.normalizeParams (queryParams) ;
     requestParams.timeout =this.timeout ;
 

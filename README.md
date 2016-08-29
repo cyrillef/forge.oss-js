@@ -130,8 +130,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [ForgeOss.Buckets](docs/Buckets.md)
- - [ForgeOss.BucketsPermissions](docs/BucketsPermissions.md)
+ - [ForgeOss.Bucket](docs/Bucket.md)
+ - [ForgeOss.BucketPermissions](docs/BucketPermissions.md)
  - [ForgeOss.InlineResponse200](docs/InlineResponse200.md)
  - [ForgeOss.InlineResponse2001](docs/InlineResponse2001.md)
  - [ForgeOss.InlineResponse200Items](docs/InlineResponse200Items.md)

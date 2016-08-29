@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="createBucket"></a>
 # **createBucket**
-> Buckets createBucket(postBuckets, opts)
+> Bucket createBucket(postBuckets, opts)
 
 
 
@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Buckets**](Buckets.md)
+[**Bucket**](Bucket.md)
 
 ### Authorization
 
@@ -118,7 +118,7 @@ null (empty response body)
 
 <a name="getBucketDetails"></a>
 # **getBucketDetails**
-> Buckets getBucketDetails(bucketKey, )
+> Bucket getBucketDetails(bucketKey, )
 
 
 
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Buckets**](Buckets.md)
+[**Bucket**](Bucket.md)
 
 ### Authorization
 

@@ -43,7 +43,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new ForgeOss.Buckets();
+    instance = new ForgeOss.BucketPermissions();
   });
 
   var getProperty = function(object, getter, property) {
@@ -62,40 +62,22 @@
       object[property] = value;
   }
 
-  describe('Buckets', function() {
-    it('should create an instance of Buckets', function() {
-      // uncomment below and update the code to test Buckets
-      //var instane = new ForgeOss.Buckets();
-      //expect(instance).to.be.a(ForgeOss.Buckets);
+  describe('BucketPermissions', function() {
+    it('should create an instance of BucketPermissions', function() {
+      // uncomment below and update the code to test BucketPermissions
+      //var instane = new ForgeOss.BucketPermissions();
+      //expect(instance).to.be.a(ForgeOss.BucketPermissions);
     });
 
-    it('should have the property bucketKey (base name: "bucketKey")', function() {
-      // uncomment below and update the code to test the property bucketKey
-      //var instane = new ForgeOss.Buckets();
+    it('should have the property authId (base name: "authId")', function() {
+      // uncomment below and update the code to test the property authId
+      //var instane = new ForgeOss.BucketPermissions();
       //expect(instance).to.be();
     });
 
-    it('should have the property bucketOwner (base name: "bucketOwner")', function() {
-      // uncomment below and update the code to test the property bucketOwner
-      //var instane = new ForgeOss.Buckets();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property createdDate (base name: "createdDate")', function() {
-      // uncomment below and update the code to test the property createdDate
-      //var instane = new ForgeOss.Buckets();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property permissions (base name: "permissions")', function() {
-      // uncomment below and update the code to test the property permissions
-      //var instane = new ForgeOss.Buckets();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property policyKey (base name: "policyKey")', function() {
-      // uncomment below and update the code to test the property policyKey
-      //var instane = new ForgeOss.Buckets();
+    it('should have the property access (base name: "access")', function() {
+      // uncomment below and update the code to test the property access
+      //var instane = new ForgeOss.BucketPermissions();
       //expect(instance).to.be();
     });
 

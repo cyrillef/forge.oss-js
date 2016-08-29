@@ -29,18 +29,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/PostBucketsPayload', 'model/Buckets', 'model/Reason', 'model/InlineResponse200'], factory);
+    define(['ApiClient', 'model/PostBucketsPayload', 'model/Bucket', 'model/Reason', 'model/InlineResponse200'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/PostBucketsPayload'), require('../model/Buckets'), require('../model/Reason'), require('../model/InlineResponse200'));
+    module.exports = factory(require('../ApiClient'), require('../model/PostBucketsPayload'), require('../model/Bucket'), require('../model/Reason'), require('../model/InlineResponse200'));
   } else {
     // Browser globals (root is window)
     if (!root.ForgeOss) {
       root.ForgeOss = {};
     }
-    root.ForgeOss.BucketsApi = factory(root.ForgeOss.ApiClient, root.ForgeOss.PostBucketsPayload, root.ForgeOss.Buckets, root.ForgeOss.Reason, root.ForgeOss.InlineResponse200);
+    root.ForgeOss.BucketsApi = factory(root.ForgeOss.ApiClient, root.ForgeOss.PostBucketsPayload, root.ForgeOss.Bucket, root.ForgeOss.Reason, root.ForgeOss.InlineResponse200);
   }
-}(this, function(ApiClient, PostBucketsPayload, Buckets, Reason, InlineResponse200) {
+}(this, function(ApiClient, PostBucketsPayload, Bucket, Reason, InlineResponse200) {
   'use strict';
 
   /**
@@ -63,7 +63,7 @@
      * Callback function to receive the result of the createBucket operation.
      * @callback module:api/BucketsApi~createBucketCallback
      * @param {String} error Error message, if any.
-     * @param {module:model/Buckets} data The data returned by the service call.
+     * @param {module:model/Bucket} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -73,9 +73,10 @@
      * @param {Object} opts Optional parameters
      * @param {module:model/String} opts.xAdsRegion The region where the bucket resides Acceptable values: &#x60;US&#x60;, &#x60;EMEA&#x60; Default is &#x60;US&#x60;  (default to US)
      * @param {module:api/BucketsApi~createBucketCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/Buckets}
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Buckets}
+     * data is of type: {@link module:model/Bucket}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Bucket}
      */
+    this.createBucketEndPoint ='/oss/v2/buckets' ;
     this.createBucket = function(postBuckets, opts, callback) {
       opts = opts || {};
       var postBody = postBuckets;
@@ -99,14 +100,14 @@
       var authNames = ['oauth2_application'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
-      var returnType = Buckets;
+      var returnType = Bucket;
 
       return this.apiClient.callApi(
-        '/oss/v2/buckets', 'POST',
+        this.createBucketEndPoint, 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the deleteBucket operation.
@@ -122,6 +123,7 @@
      * @param {module:api/BucketsApi~deleteBucketCallback} callback The callback function, accepting three arguments: error, data, response
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.deleteBucketEndPoint ='/oss/v2/buckets/{bucketKey}' ;
     this.deleteBucket = function(bucketKey, callback) {
       var postBody = null;
 
@@ -147,17 +149,17 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/oss/v2/buckets/{bucketKey}', 'DELETE',
+        this.deleteBucketEndPoint, 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getBucketDetails operation.
      * @callback module:api/BucketsApi~getBucketDetailsCallback
      * @param {String} error Error message, if any.
-     * @param {module:model/Buckets} data The data returned by the service call.
+     * @param {module:model/Bucket} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -165,9 +167,10 @@
      * This endpoint will return the buckets owned by the application. This endpoint supports pagination.
      * @param {String} bucketKey URL-encoded bucket key
      * @param {module:api/BucketsApi~getBucketDetailsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/Buckets}
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Buckets}
+     * data is of type: {@link module:model/Bucket}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Bucket}
      */
+    this.getBucketDetailsEndPoint ='/oss/v2/buckets/{bucketKey}/details' ;
     this.getBucketDetails = function(bucketKey, callback) {
       var postBody = null;
 
@@ -190,14 +193,14 @@
       var authNames = ['oauth2_application'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
-      var returnType = Buckets;
+      var returnType = Bucket;
 
       return this.apiClient.callApi(
-        '/oss/v2/buckets/{bucketKey}/details', 'GET',
+        this.getBucketDetailsEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getBuckets operation.
@@ -217,6 +220,7 @@
      * data is of type: {@link module:model/InlineResponse200}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/InlineResponse200}
      */
+    this.getBucketsEndPoint ='/oss/v2/buckets' ;
     this.getBuckets = function(opts, callback) {
       opts = opts || {};
       var postBody = null;
@@ -240,11 +244,11 @@
       var returnType = InlineResponse200;
 
       return this.apiClient.callApi(
-        '/oss/v2/buckets', 'GET',
+        this.getBucketsEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
   };
 
   return exports;

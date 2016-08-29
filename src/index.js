@@ -29,12 +29,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Buckets', 'model/BucketsPermissions', 'model/InlineResponse200', 'model/InlineResponse2001', 'model/InlineResponse200Items', 'model/InputStream', 'model/ObjectDetails', 'model/ObjectFullDetails', 'model/ObjectFullDetailsDeltas', 'model/PostBucketsPayload', 'model/PostBucketsPayloadAllow', 'model/PostBucketsSigned', 'model/PostObjectSigned', 'model/Reason', 'api/BucketsApi', 'api/ObjectsApi'], factory);
+    define(['ApiClient', 'model/Bucket', 'model/BucketPermissions', 'model/InlineResponse200', 'model/InlineResponse2001', 'model/InlineResponse200Items', 'model/InputStream', 'model/ObjectDetails', 'model/ObjectFullDetails', 'model/ObjectFullDetailsDeltas', 'model/PostBucketsPayload', 'model/PostBucketsPayloadAllow', 'model/PostBucketsSigned', 'model/PostObjectSigned', 'model/Reason', 'api/BucketsApi', 'api/ObjectsApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/Buckets'), require('./model/BucketsPermissions'), require('./model/InlineResponse200'), require('./model/InlineResponse2001'), require('./model/InlineResponse200Items'), require('./model/InputStream'), require('./model/ObjectDetails'), require('./model/ObjectFullDetails'), require('./model/ObjectFullDetailsDeltas'), require('./model/PostBucketsPayload'), require('./model/PostBucketsPayloadAllow'), require('./model/PostBucketsSigned'), require('./model/PostObjectSigned'), require('./model/Reason'), require('./api/BucketsApi'), require('./api/ObjectsApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/Bucket'), require('./model/BucketPermissions'), require('./model/InlineResponse200'), require('./model/InlineResponse2001'), require('./model/InlineResponse200Items'), require('./model/InputStream'), require('./model/ObjectDetails'), require('./model/ObjectFullDetails'), require('./model/ObjectFullDetailsDeltas'), require('./model/PostBucketsPayload'), require('./model/PostBucketsPayloadAllow'), require('./model/PostBucketsSigned'), require('./model/PostObjectSigned'), require('./model/Reason'), require('./api/BucketsApi'), require('./api/ObjectsApi'));
   }
-}(function(ApiClient, Buckets, BucketsPermissions, InlineResponse200, InlineResponse2001, InlineResponse200Items, InputStream, ObjectDetails, ObjectFullDetails, ObjectFullDetailsDeltas, PostBucketsPayload, PostBucketsPayloadAllow, PostBucketsSigned, PostObjectSigned, Reason, BucketsApi, ObjectsApi) {
+}(function(ApiClient, Bucket, BucketPermissions, InlineResponse200, InlineResponse2001, InlineResponse200Items, InputStream, ObjectDetails, ObjectFullDetails, ObjectFullDetailsDeltas, PostBucketsPayload, PostBucketsPayloadAllow, PostBucketsSigned, PostObjectSigned, Reason, BucketsApi, ObjectsApi) {
   'use strict';
 
   /**
@@ -74,15 +74,15 @@
      */
     ApiClient: ApiClient,
     /**
-     * The Buckets model constructor.
-     * @property {module:model/Buckets}
+     * The Bucket model constructor.
+     * @property {module:model/Bucket}
      */
-    Buckets: Buckets,
+    Bucket: Bucket,
     /**
-     * The BucketsPermissions model constructor.
-     * @property {module:model/BucketsPermissions}
+     * The BucketPermissions model constructor.
+     * @property {module:model/BucketPermissions}
      */
-    BucketsPermissions: BucketsPermissions,
+    BucketPermissions: BucketPermissions,
     /**
      * The InlineResponse200 model constructor.
      * @property {module:model/InlineResponse200}
