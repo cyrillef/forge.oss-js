@@ -1,6 +1,6 @@
 {
   "name": "forge-oss",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Asynchronous Javascript/Node.js library for the Autodesk Forge OSS API.",
   "homepage": "https://developer.autodesk.com/",
   "repository": {

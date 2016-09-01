@@ -404,7 +404,8 @@
                      response.body =body =JSON.parse (body) ;
                    } catch ( e ) {
                    }
-                   data =_this.deserialize (response, returnType) ;
+                   //var data =_this.deserialize (response, returnType) ;
+                   data =body ;
                 }
                 callback (error, data, response) ;
             }) ;
@@ -421,7 +422,8 @@
                 }
                 if ( response.statusCode >= 400 )
                   return (_reject (response)) ;
-                var data =_this.deserialize (response, returnType) ;
+                //var data =_this.deserialize (response, returnType) ;
+                var data =body ;
                 _resolve (data) ;
               }
             ) ;
