@@ -393,6 +393,18 @@
         requestParams.json =true ;
       }
     }
+    
+    if (accepts.length > 0) {
+      headers['Accept'] = accepts.join(',');
+      for (var i = 0; i < accepts.length; i++) {
+        if (accepts [i] === 'application/octet-stream'){
+          requestParams.encoding = null;
+        }
+      }
+    }
+    if (headerParams['Accept-Encoding'] == 'gzip, deflate'){
+      requestParams.encoding = null;
+    }
 
     if ( callback ) {
         var req =request (
