@@ -33,7 +33,8 @@ node_modules
 .node_repl_history
 
 # IDE
-.idea
+.idea/
+.vscode/
 
 .DS_Store
 *.bak
