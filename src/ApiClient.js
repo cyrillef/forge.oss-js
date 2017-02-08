@@ -395,7 +395,7 @@
     }
     
     if (accepts.length > 0) {
-      headerParams['Accept'] = accepts.join(',');
+      requestParams.headers['Accept'] = accepts.join(',');
       for (var i = 0; i < accepts.length; i++) {
         if (accepts [i] === 'application/octet-stream'){
           requestParams.encoding = null;
