@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  *
  */
-console.warn( "WARNING: The 'forge.oss-js' npm package is deprecated in favor of the 'forge-apis' npm package, please upgrade.");
+console.warn( "WARNING: The 'forge-oss' npm package is deprecated in favor of the 'forge-apis' npm package, please upgrade.");
 
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
