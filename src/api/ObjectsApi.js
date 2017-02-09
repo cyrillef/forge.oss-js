@@ -55,9 +55,12 @@
    * @param {module:ApiClient} apiClient Optional API client implementation to use,
    * default to {@link module:ApiClient#instance} if unspecified.
    */
+  var ForgeSDK = require('forge-apis');
   var exports = function(apiClient) {
     this.apiClient = apiClient || ApiClient.instance;
 
+    this.mdClient = new ForgeSDK.ObjectsApi();
+		this.oauth2_application = new ForgeSDK.AuthClientTwoLegged('1234', '1234', ['data:read'], false);
 
     /**
      * Callback function to receive the result of the copyTo operation.
@@ -78,46 +81,18 @@
      */
     this.copyToEndPoint ='/oss/v2/buckets/{bucketKey}/objects/{objectName}/copyTo/{newObjName}' ;
     this.copyTo = function(bucketKey, objectName, newObjName, callback) {
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.copyTo(bucketKey, objectName, newObjName, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'bucketKey' is set
-      if (bucketKey == undefined || bucketKey == null) {
-        throw "Missing the required parameter 'bucketKey' when calling copyTo";
-      }
-
-      // verify the required parameter 'objectName' is set
-      if (objectName == undefined || objectName == null) {
-        throw "Missing the required parameter 'objectName' when calling copyTo";
-      }
-
-      // verify the required parameter 'newObjName' is set
-      if (newObjName == undefined || newObjName == null) {
-        throw "Missing the required parameter 'newObjName' when calling copyTo";
-      }
-
-
-      var pathParams = {
-        'bucketKey': bucketKey,
-        'objectName': objectName,
-        'newObjName': newObjName
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = ObjectDetails;
-
-      return this.apiClient.callApi(
-        this.copyToEndPoint, 'PUT',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -141,47 +116,18 @@
      */
     this.createSignedResourceEndPoint ='/oss/v2/buckets/{bucketKey}/objects/{objectName}/signed' ;
     this.createSignedResource = function(bucketKey, objectName, postBucketsSigned, opts, callback) {
-      opts = opts || {};
-      var postBody = postBucketsSigned;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.createSignedResource(bucketKey, objectName, postBucketsSigned, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'bucketKey' is set
-      if (bucketKey == undefined || bucketKey == null) {
-        throw "Missing the required parameter 'bucketKey' when calling createSignedResource";
-      }
-
-      // verify the required parameter 'objectName' is set
-      if (objectName == undefined || objectName == null) {
-        throw "Missing the required parameter 'objectName' when calling createSignedResource";
-      }
-
-      // verify the required parameter 'postBucketsSigned' is set
-      if (postBucketsSigned == undefined || postBucketsSigned == null) {
-        throw "Missing the required parameter 'postBucketsSigned' when calling createSignedResource";
-      }
-
-
-      var pathParams = {
-        'bucketKey': bucketKey,
-        'objectName': objectName
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-        'access': opts['access']
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = PostObjectSigned;
-
-      return this.apiClient.callApi(
-        this.createSignedResourceEndPoint, 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -201,40 +147,18 @@
      */
     this.deleteObjectEndPoint ='/oss/v2/buckets/{bucketKey}/objects/{objectName}' ;
     this.deleteObject = function(bucketKey, objectName, callback) {
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.deleteObject(bucketKey, objectName, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'bucketKey' is set
-      if (bucketKey == undefined || bucketKey == null) {
-        throw "Missing the required parameter 'bucketKey' when calling deleteObject";
-      }
-
-      // verify the required parameter 'objectName' is set
-      if (objectName == undefined || objectName == null) {
-        throw "Missing the required parameter 'objectName' when calling deleteObject";
-      }
-
-
-      var pathParams = {
-        'bucketKey': bucketKey,
-        'objectName': objectName
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/json'];
-      var accepts = [];
-      var returnType = null;
-
-      return this.apiClient.callApi(
-        this.deleteObjectEndPoint, 'DELETE',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -256,36 +180,18 @@
      */
     this.deleteSignedResourceEndPoint ='/oss/v2/signedresources/{id}' ;
     this.deleteSignedResource = function(id, opts, callback) {
-      opts = opts || {};
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.deleteSignedResource(id, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'id' is set
-      if (id == undefined || id == null) {
-        throw "Missing the required parameter 'id' when calling deleteSignedResource";
-      }
-
-
-      var pathParams = {
-        'id': id
-      };
-      var queryParams = {
-        'region': opts['region']
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/json'];
-      var accepts = ['text/plain'];
-      var returnType = InputStream;
-
-      return this.apiClient.callApi(
-        this.deleteSignedResourceEndPoint, 'DELETE',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -311,45 +217,18 @@
      */
     this.getObjectEndPoint ='/oss/v2/buckets/{bucketKey}/objects/{objectName}' ;
     this.getObject = function(bucketKey, objectName, opts, callback) {
-      opts = opts || {};
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.getObject(bucketKey, objectName, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'bucketKey' is set
-      if (bucketKey == undefined || bucketKey == null) {
-        throw "Missing the required parameter 'bucketKey' when calling getObject";
-      }
-
-      // verify the required parameter 'objectName' is set
-      if (objectName == undefined || objectName == null) {
-        throw "Missing the required parameter 'objectName' when calling getObject";
-      }
-
-
-      var pathParams = {
-        'bucketKey': bucketKey,
-        'objectName': objectName
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-        'Range': opts['range'],
-        'If-None-Match': opts['ifNoneMatch'],
-        'If-Modified-Since': opts['ifModifiedSince'],
-        'Accept-Encoding': opts['acceptEncoding']
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/octet-stream'];
-      var returnType = InputStream;
-
-      return this.apiClient.callApi(
-        this.getObjectEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -373,43 +252,18 @@
      */
     this.getObjectDetailsEndPoint ='/oss/v2/buckets/{bucketKey}/objects/{objectName}/details' ;
     this.getObjectDetails = function(bucketKey, objectName, opts, callback) {
-      opts = opts || {};
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.getObjectDetails(bucketKey, objectName, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'bucketKey' is set
-      if (bucketKey == undefined || bucketKey == null) {
-        throw "Missing the required parameter 'bucketKey' when calling getObjectDetails";
-      }
-
-      // verify the required parameter 'objectName' is set
-      if (objectName == undefined || objectName == null) {
-        throw "Missing the required parameter 'objectName' when calling getObjectDetails";
-      }
-
-
-      var pathParams = {
-        'bucketKey': bucketKey,
-        'objectName': objectName
-      };
-      var queryParams = {
-        'with': opts['_with']
-      };
-      var headerParams = {
-        'If-Modified-Since': opts['ifModifiedSince']
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = ObjectFullDetails;
-
-      return this.apiClient.callApi(
-        this.getObjectDetailsEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -433,38 +287,18 @@
      */
     this.getObjectsEndPoint ='/oss/v2/buckets/{bucketKey}/objects' ;
     this.getObjects = function(bucketKey, opts, callback) {
-      opts = opts || {};
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.getObjects(bucketKey, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'bucketKey' is set
-      if (bucketKey == undefined || bucketKey == null) {
-        throw "Missing the required parameter 'bucketKey' when calling getObjects";
-      }
-
-
-      var pathParams = {
-        'bucketKey': bucketKey
-      };
-      var queryParams = {
-        'limit': opts['limit'],
-        'beginsWith': opts['beginsWith'],
-        'startAt': opts['startAt']
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = InlineResponse2001;
-
-      return this.apiClient.callApi(
-        this.getObjectsEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -485,46 +319,18 @@
      */
     this.getSessionidEndPoint ='/oss/v2/buckets/{bucketKey}/objects/{objectName}/status/{sessionId}' ;
     this.getSessionid = function(bucketKey, objectName, sessionId, callback) {
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.getStatusBySessionId(bucketKey, objectName, sessionId, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'bucketKey' is set
-      if (bucketKey == undefined || bucketKey == null) {
-        throw "Missing the required parameter 'bucketKey' when calling getSessionid";
-      }
-
-      // verify the required parameter 'objectName' is set
-      if (objectName == undefined || objectName == null) {
-        throw "Missing the required parameter 'objectName' when calling getSessionid";
-      }
-
-      // verify the required parameter 'sessionId' is set
-      if (sessionId == undefined || sessionId == null) {
-        throw "Missing the required parameter 'sessionId' when calling getSessionid";
-      }
-
-
-      var pathParams = {
-        'bucketKey': bucketKey,
-        'objectName': objectName,
-        'sessionId': sessionId
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = null;
-
-      return this.apiClient.callApi(
-        this.getSessionidEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -550,40 +356,18 @@
      */
     this.getSignedResourceEndPoint ='/oss/v2/signedresources/{id}' ;
     this.getSignedResource = function(id, opts, callback) {
-      opts = opts || {};
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.getSignedResource(id, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'id' is set
-      if (id == undefined || id == null) {
-        throw "Missing the required parameter 'id' when calling getSignedResource";
-      }
-
-
-      var pathParams = {
-        'id': id
-      };
-      var queryParams = {
-        'region': opts['region']
-      };
-      var headerParams = {
-        'Range': opts['range'],
-        'If-None-Match': opts['ifNoneMatch'],
-        'If-Modified-Since': opts['ifModifiedSince'],
-        'Accept-Encoding': opts['acceptEncoding']
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/octet-stream'];
-      var returnType = InputStream;
-
-      return this.apiClient.callApi(
-        this.getSignedResourceEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -611,66 +395,18 @@
      */
     this.uploadChunkEndPoint ='/oss/v2/buckets/{bucketKey}/objects/{objectName}/resumable' ;
     this.uploadChunk = function(bucketKey, objectName, contentLength, contentRange, sessionId, body, opts, callback) {
-      opts = opts || {};
-      var postBody = body;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.uploadChunk(bucketKey, objectName, contentLength, contentRange, sessionId, body, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'bucketKey' is set
-      if (bucketKey == undefined || bucketKey == null) {
-        throw "Missing the required parameter 'bucketKey' when calling uploadChunk";
-      }
-
-      // verify the required parameter 'objectName' is set
-      if (objectName == undefined || objectName == null) {
-        throw "Missing the required parameter 'objectName' when calling uploadChunk";
-      }
-
-      // verify the required parameter 'contentLength' is set
-      if (contentLength == undefined || contentLength == null) {
-        throw "Missing the required parameter 'contentLength' when calling uploadChunk";
-      }
-
-      // verify the required parameter 'contentRange' is set
-      if (contentRange == undefined || contentRange == null) {
-        throw "Missing the required parameter 'contentRange' when calling uploadChunk";
-      }
-
-      // verify the required parameter 'sessionId' is set
-      if (sessionId == undefined || sessionId == null) {
-        throw "Missing the required parameter 'sessionId' when calling uploadChunk";
-      }
-
-      // verify the required parameter 'body' is set
-      if (body == undefined || body == null) {
-        throw "Missing the required parameter 'body' when calling uploadChunk";
-      }
-
-
-      var pathParams = {
-        'bucketKey': bucketKey,
-        'objectName': objectName
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-        'Content-Length': contentLength,
-        'Content-Range': contentRange,
-        'Content-Disposition': opts['contentDisposition'],
-        'If-Match': opts['ifMatch'],
-        'Session-Id': sessionId
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/octet-stream'];
-      var accepts = ['application/json'];
-      var returnType = ObjectDetails;
-
-      return this.apiClient.callApi(
-        this.uploadChunkEndPoint, 'PUT',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -696,54 +432,18 @@
      */
     this.uploadObjectEndPoint ='/oss/v2/buckets/{bucketKey}/objects/{objectName}' ;
     this.uploadObject = function(bucketKey, objectName, contentLength, body, opts, callback) {
-      opts = opts || {};
-      var postBody = body;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.uploadObject(bucketKey, objectName, contentLength, body, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'bucketKey' is set
-      if (bucketKey == undefined || bucketKey == null) {
-        throw "Missing the required parameter 'bucketKey' when calling uploadObject";
-      }
-
-      // verify the required parameter 'objectName' is set
-      if (objectName == undefined || objectName == null) {
-        throw "Missing the required parameter 'objectName' when calling uploadObject";
-      }
-
-      // verify the required parameter 'contentLength' is set
-      if (contentLength == undefined || contentLength == null) {
-        throw "Missing the required parameter 'contentLength' when calling uploadObject";
-      }
-
-      // verify the required parameter 'body' is set
-      if (body == undefined || body == null) {
-        throw "Missing the required parameter 'body' when calling uploadObject";
-      }
-
-
-      var pathParams = {
-        'bucketKey': bucketKey,
-        'objectName': objectName
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-        'Content-Length': contentLength,
-        'Content-Disposition': opts['contentDisposition'],
-        'If-Match': opts['ifMatch']
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/octet-stream'];
-      var accepts = ['application/json'];
-      var returnType = ObjectDetails;
-
-      return this.apiClient.callApi(
-        this.uploadObjectEndPoint, 'PUT',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -769,49 +469,18 @@
      */
     this.uploadSignedResourceEndPoint ='/oss/v2/signedresources/{id}' ;
     this.uploadSignedResource = function(id, contentLength, body, opts, callback) {
-      opts = opts || {};
-      var postBody = body;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.uploadSignedResource(id, contentLength, body, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'id' is set
-      if (id == undefined || id == null) {
-        throw "Missing the required parameter 'id' when calling uploadSignedResource";
-      }
-
-      // verify the required parameter 'contentLength' is set
-      if (contentLength == undefined || contentLength == null) {
-        throw "Missing the required parameter 'contentLength' when calling uploadSignedResource";
-      }
-
-      // verify the required parameter 'body' is set
-      if (body == undefined || body == null) {
-        throw "Missing the required parameter 'body' when calling uploadSignedResource";
-      }
-
-
-      var pathParams = {
-        'id': id
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-        'Content-Length': contentLength,
-        'Content-Disposition': opts['contentDisposition'],
-        'x-ads-region': opts['xAdsRegion'],
-        'If-Match': opts['ifMatch']
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/octet-stream'];
-      var accepts = ['application/json'];
-      var returnType = PostObjectSigned;
-
-      return this.apiClient.callApi(
-        this.uploadSignedResourceEndPoint, 'PUT',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -837,54 +506,18 @@
      */
     this.uploadSignedResourcesChunkEndPoint ='/oss/v2/signedresources/{id}/resumable' ;
     this.uploadSignedResourcesChunk = function(id, contentRange, sessionId, body, opts, callback) {
-      opts = opts || {};
-      var postBody = body;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.uploadSignedResourcesChunk(id, contentRange, sessionId, body, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'id' is set
-      if (id == undefined || id == null) {
-        throw "Missing the required parameter 'id' when calling uploadSignedResourcesChunk";
-      }
-
-      // verify the required parameter 'contentRange' is set
-      if (contentRange == undefined || contentRange == null) {
-        throw "Missing the required parameter 'contentRange' when calling uploadSignedResourcesChunk";
-      }
-
-      // verify the required parameter 'sessionId' is set
-      if (sessionId == undefined || sessionId == null) {
-        throw "Missing the required parameter 'sessionId' when calling uploadSignedResourcesChunk";
-      }
-
-      // verify the required parameter 'body' is set
-      if (body == undefined || body == null) {
-        throw "Missing the required parameter 'body' when calling uploadSignedResourcesChunk";
-      }
-
-
-      var pathParams = {
-        'id': id
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-        'Content-Range': contentRange,
-        'Content-Disposition': opts['contentDisposition'],
-        'x-ads-region': opts['xAdsRegion'],
-        'Session-Id': sessionId
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/octet-stream'];
-      var accepts = ['application/json'];
-      var returnType = PostObjectSigned;
-
-      return this.apiClient.callApi(
-        this.uploadSignedResourcesChunkEndPoint, 'PUT',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
   };
 

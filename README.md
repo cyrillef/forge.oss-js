@@ -1,4 +1,6 @@
 
+# This package is now deprecated, please use the official [SDK](https://www.npmjs.com/package/forge-apis)
+
 [![build status](https://api.travis-ci.org/cyrillef/models.autodesk.io.png)](https://travis-ci.org/cyrillef/models.autodesk.io)
 [![Node.js](https://img.shields.io/badge/Node.js-5.11.1-blue.svg)](https://nodejs.org/)
 [![npm](https://img.shields.io/badge/npm-3.9.3-blue.svg)](https://www.npmjs.com/)

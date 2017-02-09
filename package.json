@@ -1,14 +1,14 @@
 {
   "name": "forge-oss",
-  "version": "2.0.6",
+  "version": "2.1.0",
   "description": "Asynchronous Javascript/Node.js library for the Autodesk Forge OSS API.",
   "homepage": "https://developer.autodesk.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/autodesk-forge/forge.oss-js"
+    "url": "https://github.com/cyrillef/forge.oss-js"
   },
   "bugs": {
-    "url": "https://github.com/autodesk-forge/forge.oss-js/issues"
+    "url": "https://github.com/cyrillef/forge.oss-js/issues"
   },
   "author": "",
   "contributors": [
@@ -29,7 +29,7 @@
     "api"
   ],
   "dependencies": {
-    "request": "2.74.0"
+    "forge-apis": "0.2.7"
   },
   "devDependencies": {
     "mocha": "~2.3.4",

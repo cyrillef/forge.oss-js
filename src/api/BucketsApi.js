@@ -55,9 +55,12 @@
    * @param {module:ApiClient} apiClient Optional API client implementation to use,
    * default to {@link module:ApiClient#instance} if unspecified.
    */
+  var ForgeSDK = require('forge-apis');
   var exports = function(apiClient) {
     this.apiClient = apiClient || ApiClient.instance;
 
+		this.mdClient = new ForgeSDK.BucketsApi();
+		this.oauth2_application = new ForgeSDK.AuthClientTwoLegged('1234', '1234', ['data:read'], false);
 
     /**
      * Callback function to receive the result of the createBucket operation.
@@ -78,35 +81,18 @@
      */
     this.createBucketEndPoint ='/oss/v2/buckets' ;
     this.createBucket = function(postBuckets, opts, callback) {
-      opts = opts || {};
-      var postBody = postBuckets;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.createBucket(postBuckets, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'postBuckets' is set
-      if (postBuckets == undefined || postBuckets == null) {
-        throw "Missing the required parameter 'postBuckets' when calling createBucket";
-      }
-
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-        'x-ads-region': opts['xAdsRegion']
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = Bucket;
-
-      return this.apiClient.callApi(
-        this.createBucketEndPoint, 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -125,34 +111,18 @@
      */
     this.deleteBucketEndPoint ='/oss/v2/buckets/{bucketKey}' ;
     this.deleteBucket = function(bucketKey, callback) {
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.deleteBucket(bucketKey, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'bucketKey' is set
-      if (bucketKey == undefined || bucketKey == null) {
-        throw "Missing the required parameter 'bucketKey' when calling deleteBucket";
-      }
-
-
-      var pathParams = {
-        'bucketKey': bucketKey
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = null;
-
-      return this.apiClient.callApi(
-        this.deleteBucketEndPoint, 'DELETE',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -172,34 +142,18 @@
      */
     this.getBucketDetailsEndPoint ='/oss/v2/buckets/{bucketKey}/details' ;
     this.getBucketDetails = function(bucketKey, callback) {
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.getBucketDetails(bucketKey, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'bucketKey' is set
-      if (bucketKey == undefined || bucketKey == null) {
-        throw "Missing the required parameter 'bucketKey' when calling getBucketDetails";
-      }
-
-
-      var pathParams = {
-        'bucketKey': bucketKey
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = Bucket;
-
-      return this.apiClient.callApi(
-        this.getBucketDetailsEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -222,32 +176,18 @@
      */
     this.getBucketsEndPoint ='/oss/v2/buckets' ;
     this.getBuckets = function(opts, callback) {
-      opts = opts || {};
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_application']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_application']);
+			var pr = this.mdClient.getBuckets(opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-
-      var pathParams = {
-      };
-      var queryParams = {
-        'region': opts['region'],
-        'limit': opts['limit'],
-        'startAt': opts['startAt']
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_application'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = InlineResponse200;
-
-      return this.apiClient.callApi(
-        this.getBucketsEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
   };
 
